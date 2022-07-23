@@ -10,6 +10,8 @@ const port = 3000;
 
 const goodsRouter = require('./routes/goods.js')
 
+
+app.use(express.static("static"))//정적파일들
 app.use(express.json())
 
 app.use('/api', [goodsRouter, cartRouter]); //두번째인자에는 미들웨어를 두개 이상 넣을 수 있음.

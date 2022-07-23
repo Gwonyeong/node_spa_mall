@@ -1,0 +1,40 @@
+회원 가입
+    /users
+    POST : {id, pw, 이름, 주민번호 ...}
+    token: jwt
+    
+로그인
+    /login
+    POST : {id, pw} 
+
+회원 정보 수정
+    /user/status?id,pw
+    POST : 업데이트 된{id, pw, 이름, 주민번호 ...}
+    GET  : req.params, pw
+회원 탈퇴
+    /user/withdrawal
+    DELETE: { id, pw, 이름, 주민번호...}
+    GET : id,pw
+게시글 작성
+    /post/create
+    GET: id, pw
+    POST: json(게시글 번호,게시글 제목, 게시글 본문)
+게시글 목록 조회
+    /post/lists
+    GET: json(게시글 번호, 게시글 제목), 페이지 번호
+    POST: 
+게시글 상세 조회
+    /post/detail?index:
+    GET: json(게시글 번호, 게시글 제목, 게시글 본문)
+게시글 수정
+    /post/correct
+게시글 삭제
+    /post?index
+    DELETE: json(게시글 번호, 게시글 제목, 게시글 본문)
+특정 게시글에 댓글 작성
+
+특정 게시글에 달린 댓글 목록 조회
+
+특정 게시글에 달린 댓글 수정
+
+특정 게시글에 달린 댓글 삭제

@@ -22,10 +22,10 @@ router.get('/goods', async (req, res) => {
 router.get('/goods/:goodsId', async (req, res) => {
     const { goodsId } = req.params;
 
-    const [detail] = await Goods.find({ goodsId: Number(goodsId) })
+    const [goods] = await Goods.find({ goodsId: Number(goodsId) })
 
     res.json({
-        detail: detail,
+        goods:goods
     })
 
 })
@@ -69,10 +69,12 @@ router.put("/goods/:goodsId/cart", async (req, res)=> {
 
     const exitstCarts= await Cart.find({ goodsId: Number(goodsId)})
     if ( !exitstCarts.length){
-        return res.status(400).json({ success: false, errorMessage: "장바구니에 해당상품이 없습니다."})
+        await Cart.create({goodsId: Number(goodsId), quantity})
 
+    }else{
+        await Cart.updateOne({ goodsId: Number(goodsId)}, {$set: {quantity}})
     }
-    await Cart.updateOne({ goodsId: Number(goodsId)}, {$set: {quantity}})
+    
     res.json({success : true})
 })
 
